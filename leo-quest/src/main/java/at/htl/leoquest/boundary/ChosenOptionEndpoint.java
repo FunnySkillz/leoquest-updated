@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-@Path("leosurvey")
+@Path("leoquest")
 public class ChosenOptionEndpoint {
     @Inject
     ChosenOptionRepository chosenOptionRepository;
