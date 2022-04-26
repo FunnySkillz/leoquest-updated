@@ -3,6 +3,7 @@ package at.htl.leoquest.control;
 import at.htl.leoquest.entities.Questionnaire;
 import at.htl.leoquest.entities.Survey;
 import at.htl.leoquest.entities.Teacher;
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.MethodOrderer;
@@ -21,8 +22,10 @@ public class TeacherRepositoryTest {
 
     @Inject
     TeacherRepository teacherRepository;
+    @Inject
+    AgroalDataSource ds;
 
-    Table teacher = new Table(DataSource.getDataSource(), "teacher");
+    Table teacher = new Table(ds, "lq_teacher");
 
     @Test
     @Order(10)

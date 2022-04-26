@@ -3,6 +3,7 @@ package at.htl.leoquest.control;
 import at.htl.leoquest.entities.Questionnaire;
 import at.htl.leoquest.entities.Survey;
 import at.htl.leoquest.entities.Transaction;
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.MethodOrderer;
@@ -29,8 +30,10 @@ public class TransactionRepositoryTest {
 
     @Inject
     SurveyRepository surveyRepository;
+    @Inject
+    AgroalDataSource ds;
 
-    Table transactions = new Table(DataSource.getDataSource(), "s_transaction");
+    Table transactions = new Table(ds, "lq_transaction");
 
     @PersistenceContext
     EntityManager em;

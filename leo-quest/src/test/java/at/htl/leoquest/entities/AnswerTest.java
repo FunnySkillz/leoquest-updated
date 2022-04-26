@@ -1,5 +1,6 @@
 package at.htl.leoquest.entities;
 
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,9 @@ class AnswerTest {
     EntityManager em;
     @Inject
     UserTransaction tm;
-    
+    @Inject
+    AgroalDataSource ds;
+
     @Test
     void createAnswerTest() throws SystemException, NotSupportedException,
             HeuristicRollbackException, HeuristicMixedException, RollbackException {
@@ -27,7 +30,7 @@ class AnswerTest {
         em.persist(qn);
         em.persist(new Answer("Yes", qn));
         tm.commit();
-        //Table a = new Table(DataSource.getDataSource(), "answer");
+        Table a = new Table(ds, "lq_answer");
         assertThat(a).hasNumberOfRows(1);
         assertThat(a).row(0)
                 .value().isEqualTo(1)

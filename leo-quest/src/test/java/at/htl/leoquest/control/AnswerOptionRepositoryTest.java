@@ -4,6 +4,7 @@ import at.htl.leoquest.entities.AnswerOption;
 import at.htl.leoquest.entities.Question;
 import at.htl.leoquest.entities.QuestionType;
 import at.htl.leoquest.entities.Questionnaire;
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.*;
@@ -19,7 +20,10 @@ public class AnswerOptionRepositoryTest {
     @Inject
     AnswerOptionRepository answerOptionRepository;
 
-    Table ao = new Table(DataSource.getDataSource(), "answeroption");
+    @Inject
+    AgroalDataSource ds;
+
+    Table ao = new Table(ds, "lq_answer_option");
 
     @Test
     @Order(10)

@@ -1,5 +1,6 @@
 package at.htl.leoquest.entities;
 
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,8 @@ class ChosenOptionTest {
     EntityManager em;
     @Inject
     UserTransaction tm;
+    @Inject
+    AgroalDataSource ds;
 
     @Test
     void createChosenOptionTest() throws SystemException, NotSupportedException,
@@ -31,7 +34,7 @@ class ChosenOptionTest {
         em.persist(a1);
         em.persist(new ChosenOption(a1, a, qn, "abc"));
         tm.commit();
-        Table chosenOption = new Table(DataSource.getDataSource(), "chosenoption");
+        Table chosenOption = new Table(ds, "lq_chosenoption");
         assertThat(chosenOption).hasNumberOfRows(1);
         assertThat(chosenOption).row(0)
                 .value().isEqualTo(1)

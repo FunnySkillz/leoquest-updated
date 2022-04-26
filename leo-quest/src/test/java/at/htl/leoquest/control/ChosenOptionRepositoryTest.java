@@ -1,6 +1,7 @@
 package at.htl.leoquest.control;
 
 import at.htl.leoquest.entities.*;
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.MethodOrderer;
@@ -19,7 +20,10 @@ public class ChosenOptionRepositoryTest {
     @Inject
     ChosenOptionRepository chosenOptionRepository;
 
-    Table chosenOption = new Table(DataSource.getDataSource(), "chosenoption");
+    @Inject
+    AgroalDataSource ds;
+
+    Table chosenOption = new Table(ds, "lq_chosen_option");
 
     @Test
     @Order(10)

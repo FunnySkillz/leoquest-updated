@@ -1,6 +1,7 @@
 package at.htl.leoquest.control;
 
 import at.htl.leoquest.entities.Questionnaire;
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.*;
@@ -20,7 +21,10 @@ public class QuestionnaireRepositoryTest {
     @Inject
     UserTransaction userTransaction;
 
-    Table t = new Table(DataSource.getDataSource(), "questionnaire");
+    @Inject
+    AgroalDataSource ds;
+
+    Table t = new Table(ds, "lq_questionnaire");
 
     @Test
     @Order(10)
@@ -29,7 +33,7 @@ public class QuestionnaireRepositoryTest {
         questionnaireRepository.save(q);
 
 
-        Table t = new Table(DataSource.getDataSource(), "questionnaire");
+        Table t = new Table(ds, "questionnaire");
         assertThat(t).column("qn_id")
                 .value().isEqualTo(1)
                 .column("qn_name")

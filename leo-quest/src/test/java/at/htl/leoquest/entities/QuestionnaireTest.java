@@ -1,5 +1,6 @@
 package at.htl.leoquest.entities;
 
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,8 @@ class QuestionnaireTest {
     EntityManager em;
     @Inject
     UserTransaction tm;
+    @Inject
+    AgroalDataSource ds;
 
     @Test
     void createQuestionnaireTest() throws SystemException, NotSupportedException,
@@ -25,7 +28,7 @@ class QuestionnaireTest {
         tm.begin();
         em.persist(q);
         tm.commit();
-        Table questionnaires = new Table(DataSource.getDataSource(), "questionnaire");
+        Table questionnaires = new Table(ds, "lq_questionnaire");
         assertThat(questionnaires).column("qn_id")
                 .value().isEqualTo(1)
                 .column("qn_name")

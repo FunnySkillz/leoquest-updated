@@ -3,6 +3,7 @@ package at.htl.leoquest.simulation;
 import at.htl.leoquest.control.AnswerOptionRepository;
 import at.htl.leoquest.control.*;
 import at.htl.leoquest.entities.*;
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.MethodOrderer;
@@ -36,13 +37,15 @@ public class Simulation {
     SurveyRepository surveyRepository;
     @Inject
     TeacherRepository teacherRepository;
+    @Inject
+    AgroalDataSource ds;
 
-    Table ao_table = new Table(DataSource.getDataSource(), "answeroption");
-    Table q_table = new Table(DataSource.getDataSource(), "questionnaire");
-    Table qn_table = new Table(DataSource.getDataSource(), "question");
-    Table st_table = new Table(DataSource.getDataSource(), "s_transaction");
-    Table s_table = new Table(DataSource.getDataSource(), "survey");
-    Table t_table = new Table(DataSource.getDataSource(), "teacher");
+    Table ao_table = new Table(ds, "answeroption");
+    Table q_table = new Table(ds, "questionnaire");
+    Table qn_table = new Table(ds, "question");
+    Table st_table = new Table(ds, "s_transaction");
+    Table s_table = new Table(ds, "survey");
+    Table t_table = new Table(ds, "teacher");
 
 
     @Test

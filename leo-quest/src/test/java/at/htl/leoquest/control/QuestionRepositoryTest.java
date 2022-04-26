@@ -3,6 +3,7 @@ package at.htl.leoquest.control;
 import at.htl.leoquest.entities.Question;
 import at.htl.leoquest.entities.QuestionType;
 import at.htl.leoquest.entities.Questionnaire;
+import io.agroal.api.AgroalDataSource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.MethodOrderer;
@@ -24,10 +25,13 @@ public class QuestionRepositoryTest {
     EntityManager em;
 
     @Inject
+    AgroalDataSource ds;
+
+    @Inject
     QuestionRepository questionRepository;
 
-    Table t = new Table(DataSource.getDataSource(), "question");
-    Table questionnaire = new Table(DataSource.getDataSource(), "questionnaire");
+    Table t = new Table(ds, "question");
+    Table questionnaire = new Table(ds, "lq_questionnaire");
 
     @Test
     @Order(10)
