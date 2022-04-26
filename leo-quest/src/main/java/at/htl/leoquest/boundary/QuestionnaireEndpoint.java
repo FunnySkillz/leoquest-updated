@@ -1,4 +1,4 @@
-package at.htl.leosurvey.boundary;
+package at.htl.leoquest.boundary;
 
 import at.htl.leoquest.control.QuestionnaireRepository;
 import at.htl.leoquest.entities.Questionnaire;
@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("leosurvey")
+@Path("leoquest")
 public class QuestionnaireEndpoint {
     @Inject
     QuestionnaireRepository questionnaireRepository;

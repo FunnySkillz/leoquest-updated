@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 import java.time.LocalDate;
 import java.util.List;
 
-@Path("leosurvey")
+@Path("leoquest")
 public class SurveyEndpoint {
     @Inject
     SurveyRepository surveyRepository;
