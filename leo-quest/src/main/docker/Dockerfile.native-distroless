@@ -7,11 +7,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native-distroless -t quarkus/leo-quest .
+# docker build -f src/main/docker/Dockerfile.native-distroless -t quarkus/leoquest .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/leo-quest
+# docker run -i --rm -p 8080:8080 quarkus/leoquest
 #
 ###
 FROM quay.io/quarkus/quarkus-distroless-image:1.0
